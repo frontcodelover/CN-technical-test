@@ -6,6 +6,14 @@ module.exports = {
       colors: {
         primary: '#1f2b49',
       },
+      fontFamily: {
+        poppins: ['Poppins'],
+      },
+    },
+    variants: {
+      extend: {
+        visibility: ['group-hover'],
+      },
     },
     plugins: [],
   },

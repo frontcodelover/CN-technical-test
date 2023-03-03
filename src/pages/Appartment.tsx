@@ -2,8 +2,9 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import { IoMdPin } from 'react-icons/io';
+import { IoIosBed, IoIosHome, IoIosPerson, IoMdTrendingUp, IoIosWater } from 'react-icons/io';
 import { NotFound } from './NotFound';
-import { TextFormat } from '../utils/formatTxt';
+import { Link } from 'react-router-dom';
 
 interface IAppartement {
   id: number;
@@ -41,16 +42,43 @@ export const Appartment: React.FC<IAppartement> = () => {
           <div>
             <img src={currentAppartment.img} className='object-cover max-h-96 w-full' />
           </div>
-          <div className=' p-3'>
-            <h1 className='text-5xl'>{currentAppartment.name}</h1>
+          <div className='pt-12 max-w-screen-xl m-auto px-10'>
+            <Link to='/' className='text-gray-600 hover:text-gray-900'>
+              Accueil
+            </Link>
+            <h1 className='text-5xl font-bold'>{currentAppartment.name}</h1>
             <div className='relative z-10 py-1.5 font-medium text-gray-600 flex'>
               <span className='pt-1 pr-1'>
                 <IoMdPin />
               </span>
               {currentAppartment.address}
             </div>
-            Prix : {currentAppartment.price} € / mois
-            <div>{TextFormat(currentAppartment.description)}</div>
+            <div className='font-semibold text-gray-600'>Chambre privée</div>
+
+            <div className='flex justify-between py-2'>
+              <span className='flex'>
+                <IoIosPerson className='mt-1 mr-1' />
+                11 Chambres
+              </span>
+              <span className='pt-1 pr-1 flex'>
+                <IoIosHome className='mt-1 mr-1' />
+                Logement - 258m²
+              </span>
+              <span className='pt-1 pr-1 flex'>
+                <IoIosWater className='mt-1 mr-1' />
+                Salle de bain privée
+              </span>
+              <span className='pt-1 pr-1 flex'>
+                <IoIosBed className='mt-1 mr-1' />
+                Chambre - 13m²
+              </span>
+              <span className='pt-1 pr-1 flex'>
+                <IoMdTrendingUp className='mt-1 mr-1' />
+                Étage 1
+              </span>
+            </div>
+            <div>Prix : {currentAppartment.price} € / mois</div>
+            <div className='pt-4 text-gray-500 leading-5'>{currentAppartment.description}</div>
           </div>
         </>
       ) : (
