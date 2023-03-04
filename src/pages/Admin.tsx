@@ -26,12 +26,12 @@ export const Admin = () => {
               <td className='border text-primary bg-white px-4 py-2'>{appartment.address}</td>
               <td className='border text-primary bg-white px-4 py-2'>
                 <div className='flex gap-2'>
-                  <button className='flex bg-green-600 text-white'>
-                    <IoMdCreate className='mt-1 mr-1' /> Edit
+                  <button className='flex bg-green-500 text-white px-4 py-2 rounded-md'>
+                    <IoMdCreate className='mt-1 mr-1 ' /> Editer
                   </button>
-                  <button className='flex bg-red-600 text-white'>
+                  <button className='flex bg-red-500 text-white px-4 py-2 rounded-md'>
                     <IoMdTrash className='mt-1 mr-1' />
-                    Delete
+                    Supprimer
                   </button>
                 </div>
               </td>

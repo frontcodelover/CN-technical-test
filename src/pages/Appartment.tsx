@@ -6,6 +6,7 @@ import { IoIosBed, IoIosHome, IoIosPerson, IoMdTrendingUp, IoIosWater } from 're
 import { NotFound } from './NotFound';
 import { Link } from 'react-router-dom';
 import { UserContext, UserContextType } from '../context/UserContext';
+import { IoMdCreate, IoMdTrash } from 'react-icons/io';
 
 interface IAppartement {
   id: number;
@@ -45,24 +46,31 @@ export const Appartment: React.FC<IAppartement> = () => {
             <img src={currentAppartment.img} className='object-cover max-h-96 w-full' />
           </div>
           <div className='pt-12 max-w-screen-xl m-auto px-10'>
-            <Link to='/' className='text-gray-600 hover:text-gray-900'>
-              Accueil
-            </Link>
-            <span className='text-gray-600'>/</span>
-            <Link to='/appartment' className='text-gray-600 hover:text-gray-900'>
-              {currentAppartment.name}
-            </Link>
+            <div className='flex gap-2 items-center py-3'>
+              <Link to='/' className='text-gray-600 hover:text-gray-900'>
+                Accueil
+              </Link>
+              <span className='text-gray-600'>/</span>
+              <Link to='/appartment' className='text-gray-600 hover:text-gray-900'>
+                {currentAppartment.name}
+              </Link>
 
-            {user && (
-              <>
-                <Link to={`/admin/edit/${currentAppartment.id}`} className='text-gray-600 hover:text-gray-900'>
-                  <button className='bg-green-500 text-white px-4 py-2 rounded-md'>Editer</button>
-                </Link>
-                <Link to={`/admin/delete/${currentAppartment.id}`} className='text-gray-600 hover:text-gray-900'>
-                  <button className='bg-red-500 text-white px-4 py-2 rounded-md'>Supprimer</button>
-                </Link>
-              </>
-            )}
+              {user && (
+                <>
+                  <Link to={`/admin/edit/${currentAppartment.id}`} className='text-gray-600 hover:text-gray-900'>
+                    <button className='flex bg-green-500 text-white px-4 py-2 rounded-md'>
+                      <IoMdCreate className='mt-1 mr-1 ' /> Editer
+                    </button>
+                  </Link>
+                  <Link to={`/admin/delete/${currentAppartment.id}`} className='text-gray-600 hover:text-gray-900'>
+                    <button className='flex bg-red-500 text-white px-4 py-2 rounded-md'>
+                      <IoMdTrash className='mt-1 mr-1' />
+                      Supprimer
+                    </button>
+                  </Link>
+                </>
+              )}
+            </div>
             <h1 className='text-5xl font-bold'>{currentAppartment.name}</h1>
             <div className='relative z-10 py-1.5 font-medium text-gray-600 flex'>
               <span className='pt-1 pr-1'>

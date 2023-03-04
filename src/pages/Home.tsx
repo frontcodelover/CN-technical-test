@@ -25,7 +25,7 @@ export const Home: React.FC<IHome> = () => {
         />
 
         <div className='absolute top-0 left-0 w-full h-full bg-black opacity-20'></div>
-        <div className='absolute top-2/4 left-48 w-full h-auto'>
+        <div className='absolute top-2/4 left-48 h-auto'>
           <span className='mt-2 text-2xl font-extrabold leading-8 text-white lg:text-4xl xl:text-5xl'>La colocation prête-à-vivre Chez Nestor</span>
         </div>
       </div>
@@ -37,7 +37,7 @@ export const Home: React.FC<IHome> = () => {
                 <div className='relative flex items-center gap-x-4 overflow-hidden'>
                   <div className='group relative w-full h-72'>
                     <Link to={`/appartment/${appartment.id}`}>
-                      <img src={appartment.img} alt={appartment.name} className='w-full h-72 object-cover' />
+                      <img src={appartment.img} alt={appartment.name} className='w-full lg:h-72 object-cover' />
 
                       <div className='group-hover:opacity-100 opacity-0 z-10 absolute bottom-0 bg-primary text-white p-5 w-full transition duration-700 ease-in-out cursor-pointer'>
                         Découvrir cette chambre
