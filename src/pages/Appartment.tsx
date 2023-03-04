@@ -1,10 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import { IoMdPin } from 'react-icons/io';
 import { IoIosBed, IoIosHome, IoIosPerson, IoMdTrendingUp, IoIosWater } from 'react-icons/io';
 import { NotFound } from './NotFound';
 import { Link } from 'react-router-dom';
+import { UserContext, UserContextType } from '../context/UserContext';
 
 interface IAppartement {
   id: number;
@@ -17,6 +18,7 @@ interface IAppartement {
 
 export const Appartment: React.FC<IAppartement> = () => {
   const { id } = useParams();
+  const { user, logout } = useContext<UserContextType>(UserContext);
 
   const [currentAppartment, setCurrentAppartment] = useState<IAppartement>({
     id: 0,
@@ -46,6 +48,21 @@ export const Appartment: React.FC<IAppartement> = () => {
             <Link to='/' className='text-gray-600 hover:text-gray-900'>
               Accueil
             </Link>
+            <span className='text-gray-600'>/</span>
+            <Link to='/appartment' className='text-gray-600 hover:text-gray-900'>
+              {currentAppartment.name}
+            </Link>
+
+            {user && (
+              <>
+                <Link to={`/admin/edit/${currentAppartment.id}`} className='text-gray-600 hover:text-gray-900'>
+                  <button className='bg-green-500 text-white px-4 py-2 rounded-md'>Editer</button>
+                </Link>
+                <Link to={`/admin/delete/${currentAppartment.id}`} className='text-gray-600 hover:text-gray-900'>
+                  <button className='bg-red-500 text-white px-4 py-2 rounded-md'>Supprimer</button>
+                </Link>
+              </>
+            )}
             <h1 className='text-5xl font-bold'>{currentAppartment.name}</h1>
             <div className='relative z-10 py-1.5 font-medium text-gray-600 flex'>
               <span className='pt-1 pr-1'>

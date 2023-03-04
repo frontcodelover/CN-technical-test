@@ -1,17 +1,19 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
-
+import { UserContext, UserContextType } from '../context/UserContext';
 import { adminUser } from '../../data/dataUser';
 
 export const Login = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
+  const { user, login } = useContext<UserContextType>(UserContext);
 
   const handleSubmit = (e: any) => {
     e.preventDefault();
-    const user = { username, password };
-    if (user.username === adminUser.username && user.password === adminUser.password) {
+    const currentUser = { username, password };
+    if (currentUser.username === currentUser.username && currentUser.password === adminUser.password) {
+      login(currentUser.username, currentUser.password);
       localStorage.setItem('user', JSON.stringify(user));
       navigate('/admin');
     } else {

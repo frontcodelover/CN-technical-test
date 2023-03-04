@@ -6,19 +6,22 @@ import { NotFound } from './pages/NotFound';
 import { Admin } from './pages/Admin';
 import Layout from './components/layout/Layout';
 import { Login } from './pages/Login';
+import { UserProvider } from './context/UserContext';
 
 const App = () => {
   return (
     <Router>
-      <Layout>
-        <Routes>
-          <Route path='/' element={<Home appartments={undefined} />} />
-          <Route path='/appartment/:id' element={<Appartment id={0} address={''} description={''} img={''} price={0} name={''} />} />
-          <Route path='/admin' element={<Admin />} />
-          <Route path='/login' element={<Login />} />
-          <Route path='/*' element={<NotFound />} />
-        </Routes>
-      </Layout>
+      <UserProvider>
+        <Layout>
+          <Routes>
+            <Route path='/' element={<Home appartments={undefined} />} />
+            <Route path='/appartment/:id' element={<Appartment id={0} address={''} description={''} img={''} price={0} name={''} />} />
+            <Route path='/admin' element={<Admin />} />
+            <Route path='/login' element={<Login />} />
+            <Route path='/*' element={<NotFound />} />
+          </Routes>
+        </Layout>
+      </UserProvider>
     </Router>
   );
 };
