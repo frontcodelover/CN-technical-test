@@ -125,7 +125,7 @@ export const EditAppartment: React.FC = () => {
               className='relative block mb-2 w-full rounded-t-md border-0 px-2 py-2 bg-white text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:z-10 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6'
             />
             <button type='submit' className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded'>
-              Edit Appartment
+              Valider la mise à jour
             </button>
           </div>
         </div>
