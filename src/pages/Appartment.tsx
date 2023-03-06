@@ -7,6 +7,8 @@ import { NotFound } from './NotFound';
 import { Link } from 'react-router-dom';
 import { UserContext, UserContextType } from '../context/UserContext';
 import { IoMdCreate, IoMdTrash } from 'react-icons/io';
+import { useNavigate } from 'react-router-dom';
+import { deleteCurrentAppartment } from '../components/admin/DeleteAppartment';
 
 interface IAppartement {
   id: number;
@@ -20,6 +22,7 @@ interface IAppartement {
 export const Appartment: React.FC<IAppartement> = () => {
   const { id } = useParams();
   const { user, logout } = useContext<UserContextType>(UserContext);
+  const navigate = useNavigate();
 
   const [currentAppartment, setCurrentAppartment] = useState<IAppartement>({
     id: 0,
@@ -30,13 +33,23 @@ export const Appartment: React.FC<IAppartement> = () => {
     name: '',
   });
 
-  console.log(currentAppartment);
-
   useEffect(() => {
     axios.get(`http://localhost:8000/appartments/${id}`).then((res) => {
       setCurrentAppartment(res.data);
     });
   }, [id]);
+
+  // const deleteCurrentAppartment = async (e: any) => {
+  //   e.preventDefault();
+  //   try {
+  //     await axios.delete(`http://localhost:8000/appartments/${currentAppartment.id}`);
+  //     alert('Appartment deleted successfully!');
+  //     navigate('/');
+  //   } catch (error) {
+  //     console.error(error);
+  //     alert('An error occurred while deleting appartment.');
+  //   }
+  // };
 
   return (
     <>
@@ -62,12 +75,11 @@ export const Appartment: React.FC<IAppartement> = () => {
                       <IoMdCreate className='mt-1 mr-1 ' /> Editer
                     </button>
                   </Link>
-                  <Link to={`/admin/delete/${currentAppartment.id}`} className='text-gray-600 hover:text-gray-900'>
-                    <button className='flex bg-red-500 text-white px-4 py-2 rounded-md'>
-                      <IoMdTrash className='mt-1 mr-1' />
-                      Supprimer
-                    </button>
-                  </Link>
+
+                  <button className='flex bg-red-500 text-white px-4 py-2 rounded-md' onClick={() => deleteCurrentAppartment(currentAppartment.id)}>
+                    <IoMdTrash className='mt-1 mr-1' />
+                    Supprimer
+                  </button>
                 </>
               )}
             </div>
