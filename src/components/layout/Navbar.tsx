@@ -4,7 +4,6 @@ import { UserContext, UserContextType } from '../../context/UserContext';
 
 const Navbar = () => {
   const { user, logout } = useContext<UserContextType>(UserContext);
-  console.log(user);
   return (
     <>
       <div className='bg-primary w-full p-3 flex justify-between items-center'>

@@ -3,12 +3,11 @@ import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import { IoMdPin } from 'react-icons/io';
 import { IoIosBed, IoIosHome, IoIosPerson, IoMdTrendingUp, IoIosWater } from 'react-icons/io';
-import { NotFound } from './NotFound';
 import { Link } from 'react-router-dom';
-import { UserContext, UserContextType } from '../context/UserContext';
 import { IoMdCreate, IoMdTrash } from 'react-icons/io';
-import { useNavigate } from 'react-router-dom';
+import { NotFound } from './NotFound';
 import { deleteCurrentAppartment } from '../components/admin/DeleteAppartment';
+import { UserContext, UserContextType } from '../context/UserContext';
 
 interface IAppartement {
   id: number;
@@ -21,8 +20,7 @@ interface IAppartement {
 
 export const Appartment: React.FC<IAppartement> = () => {
   const { id } = useParams();
-  const { user, logout } = useContext<UserContextType>(UserContext);
-  const navigate = useNavigate();
+  const { user } = useContext<UserContextType>(UserContext);
 
   const [currentAppartment, setCurrentAppartment] = useState<IAppartement>({
     id: 0,
@@ -38,18 +36,6 @@ export const Appartment: React.FC<IAppartement> = () => {
       setCurrentAppartment(res.data);
     });
   }, [id]);
-
-  // const deleteCurrentAppartment = async (e: any) => {
-  //   e.preventDefault();
-  //   try {
-  //     await axios.delete(`http://localhost:8000/appartments/${currentAppartment.id}`);
-  //     alert('Appartment deleted successfully!');
-  //     navigate('/');
-  //   } catch (error) {
-  //     console.error(error);
-  //     alert('An error occurred while deleting appartment.');
-  //   }
-  // };
 
   return (
     <>
@@ -70,7 +56,7 @@ export const Appartment: React.FC<IAppartement> = () => {
 
               {user && (
                 <>
-                  <Link to={`/admin/edit/${currentAppartment.id}`} className='text-gray-600 hover:text-gray-900'>
+                  <Link to={`/admin/editappartment/${currentAppartment.id}`} className='text-gray-600 hover:text-gray-900'>
                     <button className='flex bg-green-500 text-white px-4 py-2 rounded-md'>
                       <IoMdCreate className='mt-1 mr-1 ' /> Editer
                     </button>

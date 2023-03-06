@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { IoMdCreate, IoMdTrash } from 'react-icons/io';
+import { Link } from 'react-router-dom';
+import { deleteCurrentAppartment } from '../components/admin/DeleteAppartment';
 
 export const Admin = () => {
   const [appartments, setAppartments] = useState<any[]>([]);
@@ -26,10 +28,12 @@ export const Admin = () => {
               <td className='border text-primary bg-white px-4 py-2'>{appartment.address}</td>
               <td className='border text-primary bg-white px-4 py-2'>
                 <div className='flex gap-2'>
-                  <button className='flex bg-green-500 text-white px-4 py-2 rounded-md'>
-                    <IoMdCreate className='mt-1 mr-1 ' /> Editer
-                  </button>
-                  <button className='flex bg-red-500 text-white px-4 py-2 rounded-md'>
+                  <Link to={`/admin/editappartment/${appartment.id}`} className='text-gray-600 hover:text-gray-900'>
+                    <button className='flex bg-green-500 text-white px-4 py-2 rounded-md'>
+                      <IoMdCreate className='mt-1 mr-1' /> Editer
+                    </button>
+                  </Link>
+                  <button className='flex bg-red-500 text-white px-4 py-2 rounded-md' onClick={() => deleteCurrentAppartment(appartment.id)}>
                     <IoMdTrash className='mt-1 mr-1' />
                     Supprimer
                   </button>
